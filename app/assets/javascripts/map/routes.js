@@ -57,7 +57,7 @@ modulejs.define("googleMaps/routes", function () {
     var leg = directionsDisplay.getDirections().routes[0].legs[0];
 
     // Validate section distance
-    if (leg.distance <= maxDistance) {
+    if (leg.distance.value <= maxDistance) {
       dataToSend = buildSectionJson(leg);
       r2.post(config.section.jsonUrl, dataToSend, sectionSaved);
       r2.changeToLoading(saveSectionButton, "Sparar");
