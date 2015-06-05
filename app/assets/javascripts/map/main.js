@@ -10,8 +10,9 @@ modulejs.define("googleMaps",
 
     init: function () {
       var map,
-          locateButton    = document.getElementById("geolocate-button");
-          addRouteButton  =  document.getElementById("new-section-button");
+          locateButton    = document.getElementById("geolocate-button"),
+          addRouteButton  = document.getElementById("new-section-button"),
+          saveButton      = document.getElementById("save-button");
 
           mapOptions = {
             zoom: 5,
@@ -57,13 +58,16 @@ modulejs.define("googleMaps",
           map.setOptions({ draggableCursor: 'crosshair' });
           routes.drawRoute(map);
 
+          saveButton.classList.remove("hidden");
+
           // Change to abort button and
           r2.changeButtonText(addRouteButton, "Avbryt");
-          r2.changeButtonClass(addRouteButton, "alert")
+          r2.changeButtonClass(addRouteButton, "alert");
           addRouteButton.removeEventListener("click", routes.listener, false);
 
           addRouteButton.addEventListener("click", function () {
             routes.cancel();
+            saveButton.classList.add("hidden");
             map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
             r2.changeButtonText(addRouteButton, "Skapa sträcka");
             r2.changeButtonClass(addRouteButton, "default")
