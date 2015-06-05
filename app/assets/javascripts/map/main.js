@@ -38,7 +38,6 @@ modulejs.define("googleMaps",
       }
 
       // Add geolocation to button
-
       if (locateButton) {
         locateButton.addEventListener("click", function () {
           r2.disableButton(locateButton);
@@ -50,10 +49,29 @@ modulejs.define("googleMaps",
         });
       }
 
+      // Add route functionality.
+      // Changes the add section button to a cancel button
+      // shows the save button
       if (addRouteButton) {
-        addRouteButton.addEventListener("click", function () {
+        routes.listener = function () {
+          map.setOptions({ draggableCursor: 'crosshair' });
           routes.drawRoute(map);
-        });
+
+          // Change to abort button and
+          r2.changeButtonText(addRouteButton, "Avbryt");
+          r2.changeButtonClass(addRouteButton, "alert")
+          addRouteButton.removeEventListener("click", routes.listener, false);
+
+          addRouteButton.addEventListener("click", function () {
+            routes.cancel();
+            map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
+            r2.changeButtonText(addRouteButton, "Skapa sträcka");
+            r2.changeButtonClass(addRouteButton, "default")
+            addRouteButton.addEventListener("click", routes.listener);
+          });
+        }
+
+        addRouteButton.addEventListener("click", routes.listener);
       }
 
 

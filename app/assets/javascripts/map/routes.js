@@ -2,6 +2,7 @@ modulejs.define("googleMaps/routes", function () {
   var directionsService = new google.maps.DirectionsService(),
       directionsDisplay,
       end,
+      routeListener,
       marker;
 
 
@@ -52,11 +53,19 @@ modulejs.define("googleMaps/routes", function () {
 
   return {
 
+    cancel: function () {
+      google.maps.event.removeListener(routeListener);
+
+    },
+
     drawRoute: function (map) {
-      var mapClickEvent = google.maps.event.addListener(map, "click", function(event) {
+
+     routeListener = google.maps.event.addListener(map, "click", function(event) {
         addRoutePoint(map, event.latLng);
       });
-    }
+    },
+
+    listener: null
 
   };
 });
