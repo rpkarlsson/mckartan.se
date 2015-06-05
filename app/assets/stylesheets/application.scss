@@ -12,14 +12,15 @@
  *
  *= require_tree .
  *= require_self
- //= require foundation_and_overrides
 
  */
+
+ @import "foundation_and_overrides";
 
 html, body {
     width: 100%;
     height: 100%;
-    background-color: black;
+    background-color: $oil;
 }
 
 .hidden {

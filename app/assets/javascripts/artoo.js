@@ -4,6 +4,10 @@ modulejs.define("artoo", function () {
 
   return {
 
+    buttonIsDisabled: function (button) {
+      return button.classList.contains("disabled");
+    },
+
     changeButtonClass: function (button, activeClass) {
       button.classList.remove("success");
       button.classList.remove("secondary");

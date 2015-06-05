@@ -1,5 +1,6 @@
 modulejs.define("googleMaps/routes", function () {
-  var directionsService = new google.maps.DirectionsService(),
+  var callback,
+      directionsService = new google.maps.DirectionsService(),
       directionsDisplay,
       end,
       routeListener,
@@ -20,6 +21,7 @@ modulejs.define("googleMaps/routes", function () {
     } else {
       calcRoute(map, marker.position, latLng);
       marker.setMap(null);
+      callback();
     }
   }
 
@@ -39,7 +41,6 @@ modulejs.define("googleMaps/routes", function () {
 
     google.maps.event.addListener(
       directionsDisplay, 'directions_changed', function() {
-        computeTotalDistance(directionsDisplay.getDirections());
       }
     );
 
@@ -51,21 +52,49 @@ modulejs.define("googleMaps/routes", function () {
   }
 
 
+   // Save the section
+  function saveSection (maxDistance) {
+    var leg = directionsDisplay.getDirections().routes[0].legs[0];
+
+    // Validate section distance
+    if (leg.distance <= maxDistance) {
+      dataToSend = buildSectionJson(leg);
+      r2.post(config.section.jsonUrl, dataToSend, sectionSaved);
+      r2.changeToLoading(saveSectionButton, "Sparar");
+
+    } else {
+      alert("Sträckan måste vara mindre än " + maxDistance / 1000 + " km.");
+    }
+
+  }
+
+
   return {
 
     cancel: function () {
       google.maps.event.removeListener(routeListener);
+      if (directionsDisplay) {
+        directionsDisplay.setMap(null);
+        directionsDisplay = null;
+      }
 
+      if (marker) {
+        marker.setMap(null);
+        marker = null;
+      }
     },
 
-    drawRoute: function (map) {
+    drawRoute: function (map, _callback) {
+      callback = _callback;
 
      routeListener = google.maps.event.addListener(map, "click", function(event) {
         addRoutePoint(map, event.latLng);
       });
     },
 
-    listener: null
+    listener: null,
+
+    saveSection: saveSection
 
   };
 });

@@ -10,11 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require modulejs
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require turbolinks
-//= require modulejs
+// require turbolinks
 //= require_tree .
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -22,10 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var map = modulejs.require("googleMaps");
 
-  $(function(){ $(document).foundation(); });
 
   // Run the maps module
   map.init();
 
 });
 
+
+$(function(){ $(document).foundation(); });
