@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+%html{ :lang => "sv" }
+  %head
+    %title= t "page_title"
+
+    %meta{ :charset => "utf-8" }
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1" }
+    %meta{ :name => "description", :content => "Din digitala mc-karta. Hjälp till att samla Sveriges bästa motorcykelvägar. Kartan skapad av oss motorcyklister för oss motorcyklister." }
+    %meta{ :name => "keywords", :content => "Mc-karta, Mckarta, MC karta, Digital, Motorcykel, Karta, Motorcykelvägar, Vägar" }
+
+    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
+    = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?libraries=places'
+    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = csrf_meta_tags
+
+  %body
+    = render 'shared/menu'
+    %main{ :class => params[:controller].parameterize + "-controller" }
+      = yield
