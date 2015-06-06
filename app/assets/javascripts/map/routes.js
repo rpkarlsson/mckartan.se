@@ -26,6 +26,20 @@ modulejs.define("googleMaps/routes", function () {
   }
 
 
+  function buildSectionJson () {
+    var leg = directionsDisplay.getDirections().routes[0].legs[0];
+    return JSON.stringify({
+      section: {
+        distance: leg.distance.value,
+        duration: leg.duration.value,
+        start_address: leg.start_address,
+        end_address: leg.end_address,
+      },
+      points: JSON.stringify(extractPoints(leg))
+    });
+  }
+
+
   // Calculates and add the route to the view
   function calcRoute (map, origin, destination) {
     var  request = {
@@ -51,6 +65,18 @@ modulejs.define("googleMaps/routes", function () {
     });
   }
 
+
+  // Extracts all points in a leg
+  // Params: The leg taken from the googlemaps API
+  function extractPoints (leg){
+    return leg.steps.map(function (step) {
+      return step.path.map(function (path) {
+        return [path.lng(), path.lat()];
+      });
+    });
+  }
+
+
   function validateSection (maxDistance) {
    var leg = directionsDisplay.getDirections().routes[0].legs[0];
    if (leg.distance.value <= maxDistance) { return true }
@@ -58,18 +84,10 @@ modulejs.define("googleMaps/routes", function () {
    return false;
   }
 
-   // Save the section
-  function saveSection () {
-    var leg = directionsDisplay.getDirections().routes[0].legs[0];
-
-    // Validate section distance
-    dataToSend = buildSectionJson(leg);
-    r2.post(config.section.jsonUrl, dataToSend, sectionSaved);
-    r2.changeToLoading(saveSectionButton, "Sparar");
-  }
-
 
   return {
+
+    buildSectionJson: buildSectionJson,
 
     cancel: function () {
       google.maps.event.removeListener(routeListener);
@@ -94,6 +112,5 @@ modulejs.define("googleMaps/routes", function () {
 
     listener: null,
     validateSection: validateSection,
-    saveSection: saveSection
   };
 });

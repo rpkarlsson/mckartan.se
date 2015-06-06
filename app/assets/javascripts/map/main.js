@@ -28,6 +28,22 @@ modulejs.define("googleMaps",
         }
       };
 
+
+   // Save the section
+  function saveSection () {
+    r2.post(config.section.jsonUrl, routes.buildSectionJson(), sectionSaved);
+  }
+
+  function sectionSaved () {}
+
+
+  function renderMap (elementId, options) {
+    return new google.maps.Map(document.getElementById(elementId), options);
+  }
+
+
+  /* BUTTONS */
+
   function addCancelButtonEvents () {
     if (r2.buttonIsDisabled(saveButton)) { return false; }
     routes.cancel();
@@ -80,16 +96,13 @@ modulejs.define("googleMaps",
         r2.changeButtonText(saveButton, "Sparar");
         r2.changeButtonClass(saveButton, "disabled");
         r2.changeButtonClass(addRouteButton, "disabled");
-        routes.saveSection();
+        saveSection();
       }
     });
   }
 
 
-  function renderMap (elementId, options) {
-    return new google.maps.Map(document.getElementById(elementId), options);
-  }
-
+  /* PUBLIC API */
 
   return {
 
@@ -107,6 +120,4 @@ modulejs.define("googleMaps",
 
     }
   };
-
-
 });
