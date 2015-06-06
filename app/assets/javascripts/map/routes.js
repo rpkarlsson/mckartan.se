@@ -51,21 +51,21 @@ modulejs.define("googleMaps/routes", function () {
     });
   }
 
+  function validateSection (maxDistance) {
+   var leg = directionsDisplay.getDirections().routes[0].legs[0];
+   if (leg.distance.value <= maxDistance) { return true }
+   alert("Sträckan måste vara mindre än " + maxDistance / 1000 + " km.");
+   return false;
+  }
 
    // Save the section
-  function saveSection (maxDistance) {
+  function saveSection () {
     var leg = directionsDisplay.getDirections().routes[0].legs[0];
 
     // Validate section distance
-    if (leg.distance.value <= maxDistance) {
-      dataToSend = buildSectionJson(leg);
-      r2.post(config.section.jsonUrl, dataToSend, sectionSaved);
-      r2.changeToLoading(saveSectionButton, "Sparar");
-
-    } else {
-      alert("Sträckan måste vara mindre än " + maxDistance / 1000 + " km.");
-    }
-
+    dataToSend = buildSectionJson(leg);
+    r2.post(config.section.jsonUrl, dataToSend, sectionSaved);
+    r2.changeToLoading(saveSectionButton, "Sparar");
   }
 
 
@@ -93,8 +93,7 @@ modulejs.define("googleMaps/routes", function () {
     },
 
     listener: null,
-
+    validateSection: validateSection,
     saveSection: saveSection
-
   };
 });

@@ -76,10 +76,12 @@ modulejs.define("googleMaps",
   function addSaveButtonEvents () {
     saveButton.addEventListener("click", function () {
       if (r2.buttonIsDisabled(saveButton)) { return false; }
-      r2.changeButtonText(saveButton, "Sparar");
-      r2.changeButtonClass(saveButton, "disabled");
-      r2.changeButtonClass(addRouteButton, "disabled");
-      routes.saveSection(config.section.maxDistance);
+      if (routes.validateSection(config.section.maxDistance)) {
+        r2.changeButtonText(saveButton, "Sparar");
+        r2.changeButtonClass(saveButton, "disabled");
+        r2.changeButtonClass(addRouteButton, "disabled");
+        routes.saveSection();
+      }
     });
   }
 
