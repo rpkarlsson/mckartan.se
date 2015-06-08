@@ -45,7 +45,6 @@ modulejs.define("googleMaps",
   /* BUTTONS */
 
   function addCancelButtonEvents () {
-    if (r2.buttonIsDisabled(saveButton)) { return false; }
     routes.cancel();
     saveButton.classList.add("hidden");
     saveButton.classList.add("disabled");
@@ -73,18 +72,13 @@ modulejs.define("googleMaps",
     routes.listener = function () {
       map.setOptions({ draggableCursor: 'crosshair' });
       routes.drawRoute(map, function () { saveButton.classList.remove("disabled"); });
-      if (r2.buttonIsDisabled(addRouteButton)) { return false; }
-
       saveButton.classList.remove("hidden");
-
       // Change to abort button and
       r2.changeButtonText(addRouteButton, "Avbryt");
       r2.changeButtonClass(addRouteButton, "alert");
       addRouteButton.removeEventListener("click", routes.listener, false);
-
       addRouteButton.addEventListener("click",addCancelButtonEvents);
     };
-
     addRouteButton.addEventListener("click", routes.listener);
   }
 
