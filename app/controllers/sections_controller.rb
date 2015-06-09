@@ -6,7 +6,7 @@ class SectionsController < ApplicationController
 
   def index
     respond_to do |format|
-      format.json { @sections =  [nil] } #Section.all }
+      format.json { @sections = Section.all }
     end
   end
 

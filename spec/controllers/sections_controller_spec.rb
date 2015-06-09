@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SectionsController, type: :controller do
 
-  let(:section) { }
+  let(:section) { FactoryGirl.create(:section) }
 
   it "assigns sections" do
     get :index, format: :json

@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150605093127) do
+ActiveRecord::Schema.define(version: 20150609092037) do
+
+  create_table "sections", force: :cascade do |t|
+    t.integer  "user_id",                  null: false
+    t.decimal  "distance",                 null: false
+    t.decimal  "duration",                 null: false
+    t.string   "start_address", limit: 50, null: false
+    t.string   "end_address",   limit: 50, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  add_index "sections", ["user_id"], name: "index_sections_on_user_id"
 
   create_table "users_engine_users", force: :cascade do |t|
     t.string   "name"
