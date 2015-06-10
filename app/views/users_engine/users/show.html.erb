@@ -1,0 +1,13 @@
+
+<div class="large-3 large-offset-2 column">
+  <ul class="pricing-table">
+    <li class="title"><%= @user.name %></li>
+    <li class="bullet-item"><%= @user.email %></li>
+    <li class="bullet-item"><%= "#{t("registered")}: #{l(@user.created_at, format: :short)}" %></li>
+    <li class="bullet-item">
+     <%= link_to t(".edit"), users_engine.profile_edit_url %>
+     |
+     <%= link_to t("log_out"), users_engine.logout_path, method: :delete %>
+    </li>
+  </ul>
+

@@ -1,0 +1,12 @@
+
+ <div class="large-3 large-offset-2 columns">
+  <%= form_for(:session, url: users_engine.login_path) do |f| %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <%= f.label :password, t("password") %>
+    <%= f.password_field :password %>
+    <%= f.submit t("log_in"), class: "button" %>
+  <% end %>
+    <%= t "new_user?" %>
+    <%= link_to t("sign_up"), users_engine.signup_path %>
+ </div>

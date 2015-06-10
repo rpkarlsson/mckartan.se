@@ -123,9 +123,9 @@ modulejs.define("googleMaps",
 
       if (document.getElementById(config.canvasId)) {
         map = renderMap(config.canvasId, mapOptions);
+        map.data.loadGeoJson(config.section.jsonUrl);
       }
       setStyle();
-      map.data.loadGeoJson(config.section.jsonUrl);
 
       if (locateButton) { addLocateButtonEvents(); }
 

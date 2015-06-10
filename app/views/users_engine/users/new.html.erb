@@ -8,7 +8,7 @@
     </div>
 
     <div class="row">
-      <%= f.label :email %>
+      <%= f.label :email, t("email") %>
       <%= f.email_field :email %>
     </div>
 
@@ -23,7 +23,7 @@
     </div>
 
     <div class="row">
-       <%= f.submit t(".sign_up"), class: "button" %>
+       <%= f.submit t("sign_up"), class: "button" %>
     </div>
   <% end %>
 </div>
