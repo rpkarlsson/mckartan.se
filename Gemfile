@@ -57,3 +57,5 @@ gem 'haml'
 gem 'foundation-rails'
 
 gem 'modulejs-rails'
+
+gem 'modernizr-rails'

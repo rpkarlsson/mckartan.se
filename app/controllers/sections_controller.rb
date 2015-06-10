@@ -19,9 +19,14 @@ class SectionsController < ApplicationController
     add_points params[:points]
 
     respond_to do |format|
-      if @section.save
-        flash.keep[:success] = t(".created")
-        format.json { render json: @section, status: :created }
+      if true #@section.save
+        format.json {
+          flash[:success] = t ".success"
+          flash = render_to_string(partial: "shared/flash", formats: :html)
+          render json: [section: @section,
+                        flash: flash,
+                         url: root_path],
+                         status: :created }
       else
         format.json { render json: @section.errors, status: :unprocessable_entity }
       end

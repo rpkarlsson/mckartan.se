@@ -29,10 +29,6 @@ modulejs.define("googleMaps",
       };
 
 
-  function addSections () {
-
-  }
-
 
   function renderMap (elementId, options) {
     return new google.maps.Map(document.getElementById(elementId), options);
@@ -42,15 +38,28 @@ modulejs.define("googleMaps",
    // Save the section
   function saveSection () {
     r2.http.post(config.section.jsonUrl, routes.buildSectionJson(), sectionSaved);
-    // $.post(config.section.jsonUrl, routes.buildSectionJson(), sectionSaved);
-
     r2.changeButtonText(saveButton, "Sparar");
     r2.changeButtonClass(saveButton, "disabled");
     r2.changeButtonClass(addRouteButton, "disabled");
   }
 
 
-  function sectionSaved () {}
+  function sectionSaved (event) {
+    //window.location.replace("/");
+    var response = JSON.parse(event.srcElement.responseText)[0];
+    // var parser = new DOMParser();
+    // var flash = parser.parseFromString(response.flash, "text/html");
+    var flash = document.createElement("div");
+    flash.innerHTML = response.flash;
+
+    document.getElementsByClassName("pages-controller")[0].appendChild(flash);
+
+    $(document).foundation('alert', 'reflow');
+    // document.getElementsByTagName("body").innerHTML = response[0].flash;
+  }
+
+
+  function sectionSaveError (event) {}
 
 
   function setStyle () {

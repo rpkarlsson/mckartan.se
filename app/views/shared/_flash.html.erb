@@ -1,0 +1,11 @@
+
+<% if flash.any? %>
+  <div data-alert class="alert-box radius">
+
+    <% flash.each do |type, message| %>
+      <%= message %>
+    <% end %>
+
+    <a href="#" class="close">&times;</a>
+  </div>
+<% end %>
