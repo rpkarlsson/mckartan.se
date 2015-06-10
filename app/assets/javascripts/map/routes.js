@@ -79,7 +79,7 @@ modulejs.define("googleMaps/routes", function () {
 
   function validateSection (maxDistance) {
    var leg = directionsDisplay.getDirections().routes[0].legs[0];
-   if (leg.distance.value <= maxDistance) { return true }
+   if (leg.distance.value <= maxDistance) { return true; }
    alert("Sträckan måste vara mindre än " + maxDistance / 1000 + " km.");
    return false;
   }
