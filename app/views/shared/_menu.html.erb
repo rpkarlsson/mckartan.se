@@ -1,23 +1,32 @@
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
-      <h1><a href=<%= root_url %>>MC-kartan.se</a></h1>
+      <h1><a href=<%= main_app.root_url %>>mc-kartan.se</a></h1>
     </li>
-     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+     <!-- remove the class "menu-icon" to get rid of menu icon. take out "menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
   </ul>
 
-  <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
-      <li class="has-dropdown">
-        <a href="#">Right Button Dropdown</a>
-        <ul class="dropdown">
-          <li><a href="#">First link in dropdown</a></li>
-          <li><a id="create-section" href="#">Skapa ny sträcka</a></li>
-        </ul>
-      </li>
-    </ul>
+  <% if @logged_in %>
+    <section class="top-bar-section">
+      <!-- right nav section -->
+      <ul class="right">
+        <li class="has-dropdown">
+          <a href="#"><%= @current_user.name %></a>
+          <ul class="dropdown">
+            <li><a href="#"><%= t "profile" %></a></li>
+            <li><%= link_to t("log out"), users_engine.logout_path, method: :delete %></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  <% else %>
+    <section class="top-bar-section">
+      <!-- right nav section -->
+      <ul class="right">
+        <li><%= link_to t("log in"), users_engine.login_path %></li>
+      </ul>
+    </section>
 
-  </section>
+  <% end %>
 </nav>

@@ -1,0 +1,21 @@
+
+.row
+  .col-sm-4.col-sm-offset-2
+    %h3
+      =t (".update")
+    = form_for(@user || @current_user, url: profile_edit_url) do |f|
+
+      = f.label :name, t("username")
+      = f.text_field :name, class: 'form-control'
+
+      = f.label :email, t("email")
+      = f.email_field :email, class: 'form-control'
+
+      = f.label :password, t("password")
+      = f.password_field :password, class: 'form-control'
+
+      = f.label :password_confirmation, t("password_confirmation")
+      = f.password_field :password_confirmation, class: 'form-control'
+      %br
+      = link_to t("cancel"), profile_path, class: "btn btn-danger"
+      = f.submit t("save"), class: "btn btn-primary"

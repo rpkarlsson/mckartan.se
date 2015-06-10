@@ -1,5 +1,6 @@
 class SectionsController < ApplicationController
 
+  skip_before_action :verify_authenticity_token, only: [:create]
   before_action :check_format
   before_action :require_log_in, except: [:index]
 
@@ -13,18 +14,18 @@ class SectionsController < ApplicationController
 
 
   def create
-      @section = Section.new(section_params)
-      @section.user_id = @current_user.id
-      add_points JSON.parse(params[:points])
+    @section = Section.new(section_params)
+    @section.user_id = current_user.id
+    add_points params[:points]
 
-      respond_to do |format|
-        if @section.save
-          flash.keep[:success] = t(".created")
-          format.json { render json: @section, status: :created }
-        else
-          format.json { render json: @section.errors, status: :unprocessable_entity }
-        end
+    respond_to do |format|
+      if @section.save
+        flash.keep[:success] = t(".created")
+        format.json { render json: @section, status: :created }
+      else
+        format.json { render json: @section.errors, status: :unprocessable_entity }
       end
+    end
   end
 
 
@@ -36,10 +37,7 @@ class SectionsController < ApplicationController
 
 
   def section_params
-    params.require(:section).permit(:distance,
-                                    :duration,
-                                    :start_address,
-                                    :end_address)
+    params.require(:section).permit(:distance, :duration, :start_address, :end_address)
   end
 
 

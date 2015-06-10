@@ -1,7 +1,7 @@
 // The controller for the maps funtionality
 modulejs.define("googleMaps",
   [
-    "artoo",
+   "artoo",
    "googleMaps/geolocate",
    "googleMaps/routes"
   ], function (r2, geolocate, routes) {
@@ -29,18 +29,39 @@ modulejs.define("googleMaps",
       };
 
 
-   // Save the section
-  function saveSection () {
-    r2.post(config.section.jsonUrl, routes.buildSectionJson(), sectionSaved);
-  }
+  function addSections () {
 
-  function sectionSaved () {}
+  }
 
 
   function renderMap (elementId, options) {
     return new google.maps.Map(document.getElementById(elementId), options);
   }
 
+
+   // Save the section
+  function saveSection () {
+    r2.http.post(config.section.jsonUrl, routes.buildSectionJson(), sectionSaved);
+    // $.post(config.section.jsonUrl, routes.buildSectionJson(), sectionSaved);
+
+    r2.changeButtonText(saveButton, "Sparar");
+    r2.changeButtonClass(saveButton, "disabled");
+    r2.changeButtonClass(addRouteButton, "disabled");
+  }
+
+
+  function sectionSaved () {}
+
+
+  function setStyle () {
+    map.data.setStyle(function(feature) {
+      return ({
+        fillColor: 'darkred',
+        strokeColor: 'darkred',
+        strokeWeight: 3
+      });
+    });
+  }
 
   /* BUTTONS */
 
@@ -85,11 +106,9 @@ modulejs.define("googleMaps",
 
   function addSaveButtonEvents () {
     saveButton.addEventListener("click", function () {
-      if (r2.buttonIsDisabled(saveButton)) { return false; }
-      if (routes.validateSection(config.section.maxDistance)) {
-        r2.changeButtonText(saveButton, "Sparar");
-        r2.changeButtonClass(saveButton, "disabled");
-        r2.changeButtonClass(addRouteButton, "disabled");
+      if (r2.buttonIsDisabled(saveButton)) {
+        return false;
+      } else if (routes.validateSection(config.section.maxDistance)) {
         saveSection();
       }
     });
@@ -105,6 +124,8 @@ modulejs.define("googleMaps",
       if (document.getElementById(config.canvasId)) {
         map = renderMap(config.canvasId, mapOptions);
       }
+      setStyle();
+      map.data.loadGeoJson(config.section.jsonUrl);
 
       if (locateButton) { addLocateButtonEvents(); }
 

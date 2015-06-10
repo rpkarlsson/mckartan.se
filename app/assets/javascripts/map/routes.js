@@ -35,7 +35,7 @@ modulejs.define("googleMaps/routes", function () {
         start_address: leg.start_address,
         end_address: leg.end_address,
       },
-      points: JSON.stringify(extractPoints(leg))
+      points: extractPoints(leg)
     });
   }
 
@@ -69,11 +69,18 @@ modulejs.define("googleMaps/routes", function () {
   // Extracts all points in a leg
   // Params: The leg taken from the googlemaps API
   function extractPoints (leg){
-    return leg.steps.map(function (step) {
-      return step.path.map(function (path) {
-        return [path.lng(), path.lat()];
+    var points = [];
+
+    // Loop through all steps in a leg
+    // calling them points
+    Array.prototype.forEach.call(leg.steps, function(step) {
+      // Loop through all paths and save long and lat to
+      // out points array
+      Array.prototype.forEach.call(step.path, function(path) {
+        points.push([path.lng(), path.lat()]);
       });
     });
+    return points;
   }
 
 

@@ -1,0 +1,13 @@
+
+.row
+  .col-sm-3.col-sm-offset-3
+    = form_for(:session, url: users_engine.login_path) do |f|
+      = f.label :name, t("email")
+      = f.text_field :email, class: 'form-control'
+      = f.label :password, t("password")
+      = f.password_field :password, class: 'form-control'
+      = f.submit t(".login"), class: "btn btn-primary"
+.row
+  .col-sm-3.col-sm-offset-3
+    = t ".new_user?"
+    = link_to t(".sign_up"), users_engine.signup_path

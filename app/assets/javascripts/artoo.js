@@ -27,8 +27,24 @@ modulejs.define("artoo", function () {
     },
 
     enableButton: function (button) {
-      button.classList.remove("disabled")
+      button.classList.remove("disabled");
     },
+
+    http: {
+      post: function (url, data, callback, error) {
+        var xhr = new XMLHttpRequest();
+
+        xhr.addEventListener("load", callback);
+        if (error) {
+          xhr.addEventListener("error", error);
+        }
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.send(data);
+
+      },
+      get: function () {}
+    }
 
 
   };
