@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609092037) do
+ActiveRecord::Schema.define(version: 20150610072707) do
+
+  create_table "points", force: :cascade do |t|
+    t.integer "section_id", null: false
+    t.float   "lng"
+    t.float   "lat"
+  end
+
+  add_index "points", ["section_id"], name: "index_points_on_section_id"
 
   create_table "sections", force: :cascade do |t|
     t.integer  "user_id",                  null: false

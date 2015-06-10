@@ -4,4 +4,21 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   include UsersEngine::Authentication
+
+  before_action :check_user
+
+  protected
+
+
+  def require_log_in
+    unless @logged_in
+      if request.format.json?
+        render json: "Unauthorized request", status: :unauthorized
+      else
+        flash[:notice] = t("authenticate")
+        redirect_to users_engine.login_url, status: :unauthorized
+      end
+    end
+  end
+
 end

@@ -1,6 +1,7 @@
 class SectionsController < ApplicationController
 
-  before_filter :check_format
+  before_action :check_format
+  before_action :require_log_in, except: [:index]
 
 
 
@@ -11,12 +12,41 @@ class SectionsController < ApplicationController
   end
 
 
-  private
+  def create
+      @section = Section.new(section_params)
+      @section.user_id = @current_user.id
+      add_points JSON.parse(params[:points])
 
+      respond_to do |format|
+        if @section.save
+          flash.keep[:success] = t(".created")
+          format.json { render json: @section, status: :created }
+        else
+          format.json { render json: @section.errors, status: :unprocessable_entity }
+        end
+      end
+  end
+
+
+  private
 
   def check_format
     render :nothing => true, :status => 406 unless params[:format] == 'json'
   end
 
+
+  def section_params
+    params.require(:section).permit(:distance,
+                                    :duration,
+                                    :start_address,
+                                    :end_address)
+  end
+
+
+  def add_points points
+    points.each do |point|
+      @section.points.new(lng: point.first, lat: point.last )
+    end
+  end
 
 end

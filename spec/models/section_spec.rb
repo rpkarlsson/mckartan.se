@@ -27,4 +27,8 @@ RSpec.describe Section, type: :model do
     expect(FactoryGirl.build(:section, end_address: nil)).to_not be_valid
   end
 
+  it "requires a point" do
+    expect(FactoryGirl.build(:section, points: [])).to_not be_valid
+  end
+
 end
