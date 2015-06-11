@@ -1,11 +1,9 @@
 
 <% if flash.any? %>
-  <div data-alert class="alert-box radius">
-
     <% flash.each do |type, message| %>
-      <%= message %>
+      <div data-alert class="alert-box radius <%= type %> small-8 columns">
+        <%= message %>
+        <a href="#" class="close">&times;</a>
+      </div>
     <% end %>
-
-    <a href="#" class="close">&times;</a>
-  </div>
 <% end %>

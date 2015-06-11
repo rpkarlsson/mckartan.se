@@ -1,7 +1,7 @@
 class SectionsController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:create]
-  before_action :check_format
+  # before_action :check_format
   before_action :require_log_in, except: [:index]
 
 
@@ -24,7 +24,6 @@ class SectionsController < ApplicationController
           flash[:success] = t ".success"
           flash = render_to_string(partial: "shared/flash", formats: :html)
           render json: [section: @section,
-                        flash: flash,
                          url: root_path],
                          status: :created }
       else

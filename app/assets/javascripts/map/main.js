@@ -45,17 +45,12 @@ modulejs.define("googleMaps",
 
 
   function sectionSaved (event) {
-    //window.location.replace("/");
-    var response = JSON.parse(event.srcElement.responseText)[0];
-    // var parser = new DOMParser();
-    // var flash = parser.parseFromString(response.flash, "text/html");
-    var flash = document.createElement("div");
-    flash.innerHTML = response.flash;
+    var response, flash;
+    if (event.target.status === 201) {
+      window.location = "/";
+    } else if (event.target.status === 401) {
 
-    document.getElementsByClassName("pages-controller")[0].appendChild(flash);
-
-    $(document).foundation('alert', 'reflow');
-    // document.getElementsByTagName("body").innerHTML = response[0].flash;
+    }
   }
 
 
@@ -101,7 +96,10 @@ modulejs.define("googleMaps",
   function addNewRouteButtonEvents () {
     routes.listener = function () {
       map.setOptions({ draggableCursor: 'crosshair' });
-      routes.drawRoute(map, function () { saveButton.classList.remove("disabled"); });
+      routes.drawRoute(map, function () {
+        map.setOptions({ draggableCursor: 'url(http://maps.google.com/mapfiles/openhand.cur), move' });
+        saveButton.classList.remove("disabled");
+      });
       saveButton.classList.remove("hidden");
       // Change to abort button and
       r2.changeButtonText(addRouteButton, "Avbryt");
@@ -132,9 +130,9 @@ modulejs.define("googleMaps",
 
       if (document.getElementById(config.canvasId)) {
         map = renderMap(config.canvasId, mapOptions);
+        setStyle();
         map.data.loadGeoJson(config.section.jsonUrl);
       }
-      setStyle();
 
       if (locateButton) { addLocateButtonEvents(); }
 

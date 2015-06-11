@@ -21,6 +21,7 @@ modulejs.define("googleMaps/routes", function () {
     } else {
       calcRoute(map, marker.position, latLng);
       marker.setMap(null);
+      google.maps.event.removeListener(routeListener);
       callback();
     }
   }
