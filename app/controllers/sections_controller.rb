@@ -22,7 +22,6 @@ class SectionsController < ApplicationController
       if @section.save
         format.json {
           flash[:success] = t ".success"
-          flash = render_to_string(partial: "shared/flash", formats: :html)
           render json: [section: @section,
                          url: root_path],
                          status: :created }
