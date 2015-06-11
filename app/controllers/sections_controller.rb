@@ -19,7 +19,7 @@ class SectionsController < ApplicationController
     add_points params[:points]
 
     respond_to do |format|
-      if true #@section.save
+      if @section.save
         format.json {
           flash[:success] = t ".success"
           flash = render_to_string(partial: "shared/flash", formats: :html)
