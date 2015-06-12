@@ -1,7 +1,7 @@
 class SectionsController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:create]
-  # before_action :check_format
+  before_action :check_format
   before_action :require_log_in, except: [:index]
 
 
@@ -22,12 +22,18 @@ class SectionsController < ApplicationController
       if @section.save
         format.json {
           flash[:success] = t ".success"
-          render json: [section: @section,
-                         url: root_path],
-                         status: :created }
+          render json: [section: @section, url: root_path], status: :created }
       else
         format.json { render json: @section.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def show
+    @section = Section.find(params[:id])
+    @partial = render_to_string "sections/show", formats: :html, layout: false
+    respond_to do |format|
+      format.json
     end
   end
 

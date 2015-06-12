@@ -4,6 +4,7 @@ modulejs.define("googleMaps",
    "artoo",
    "googleMaps/geolocate",
    "googleMaps/routes"
+   // "googleMaps/infoWindow"
   ], function (r2, geolocate, routes) {
 
   var map,
@@ -54,8 +55,6 @@ modulejs.define("googleMaps",
   }
 
 
-  function sectionSaveError (event) {}
-
 
   function setStyle () {
     map.data.setStyle(function(feature) {
@@ -63,6 +62,26 @@ modulejs.define("googleMaps",
         fillColor: 'darkred',
         strokeColor: 'darkred',
         strokeWeight: 3
+      });
+    });
+  }
+
+
+  /* EVENTS */
+
+  function addMapClick () {
+    map.data.addListener("click", function (event) {
+      var feature = event.feature;
+
+      r2.http.get(event.feature.getProperty("url"), function (event) {
+        var infowindow = new google.maps.InfoWindow(),
+            content = JSON.parse(event.target.response).properties.html;
+            where = feature.getGeometry().getAt(0);
+
+
+        infowindow.setContent(content);
+        infowindow.setPosition(where);
+        infowindow.open(map);
       });
     });
   }
@@ -132,6 +151,7 @@ modulejs.define("googleMaps",
         map = renderMap(config.canvasId, mapOptions);
         setStyle();
         map.data.loadGeoJson(config.section.jsonUrl);
+        addMapClick();
       }
 
       if (locateButton) { addLocateButtonEvents(); }

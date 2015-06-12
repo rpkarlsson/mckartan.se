@@ -1,6 +1,8 @@
 class Section < ActiveRecord::Base
 
-  has_many :points
+  belongs_to :user, class_name: "UsersEngine::User"
+
+  has_many  :points
 
   validates :user_id,
             :distance,

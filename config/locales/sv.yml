@@ -4,6 +4,7 @@ sv:
   cancel: Avbryt
   log_in: Logga in
   log_out: Logga ut
+  minutes: Minuter
   new_user?: "Ny användare?"
   page_title: MC-kartan.se
   password: Lösenord
@@ -13,6 +14,14 @@ sv:
   save: Spara
   sign_up: Registrera
   username: Användarnamn
+
+  sections:
+    show:
+      created_by: Skapad av
+      start_address: Start
+      end_address: Slut
+      distance: Längd
+      duration: Tid
 
 
 
@@ -213,4 +222,5 @@ sv:
       default: "%a, %e %b %Y %H:%M:%S %z"
       long: "%e %B %Y %H:%M"
       short: "%e %b %H:%M"
+      day: "%e %b %Y"
     pm: ''

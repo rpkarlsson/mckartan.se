@@ -43,7 +43,16 @@ modulejs.define("artoo", function () {
         xhr.send(data);
 
       },
-      get: function () {}
+      get: function (url, callback, error) {
+        var xhr = new XMLHttpRequest();
+
+        xhr.addEventListener("load", callback);
+        if (error) {
+          xhr.addEventListener("error", error);
+        }
+        xhr.open("GET", url, true);
+        xhr.send();
+      }
     }
 
 

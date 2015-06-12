@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th><%= t '.start_address' %></th>
+    <td><%= @section.start_address %></td>
+  </tr>
+  <tr>
+    <th><%= t '.end_address' %></th>
+    <td><%= @section.end_address %></td>
+  </tr>
+  <tr>
+    <th><%= t '.distance' %></th>
+    <td><%= "#{to_km @section.distance} km" %></td>
+  </tr>
+  <tr>
+    <th><%= t '.duration' %></th>
+    <td><%= "#{to_minutes @section.duration} #{t 'minutes'}" %></td>
+  </tr>
+  <tr>
+    <td colspan="2"><%= "#{ t '.created_by' } #{ @section.user.name }, #{ l(@section.created_at, format: :day) }" %></td>
+  </tr>
+</table>
