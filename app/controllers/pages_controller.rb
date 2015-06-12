@@ -12,7 +12,7 @@ class PagesController < ApplicationController
     # Informs the user that cookies are being used
     # if the user is new to the site.
     if cookies[:cookie].blank?
-      flash.now[:alert] = t("cookie_prompt")
+      flash.now[:info] = t("cookie_prompt")
       cookies[:cookie] = 1
     end
   end
