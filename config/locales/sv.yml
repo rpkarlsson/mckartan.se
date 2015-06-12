@@ -1,4 +1,11 @@
 sv:
+  activerecord:
+    attributes:
+      users_engine/user:
+        name: Användarnamn
+        password: Lösenord
+        password_confirmation: Lösenordsbekräftelse
+
 
   # Generic
   cancel: Avbryt
@@ -14,8 +21,11 @@ sv:
   save: Spara
   sign_up: Registrera
   username: Användarnamn
+  User: användaren
 
   sections:
+    create:
+      success: Sträckan har sparats. Tack för ditt bidrag!
     show:
       created_by: Skapad av
       start_address: Start
@@ -26,6 +36,9 @@ sv:
 
 
   users_engine:
+    sessions:
+      create:
+        failure: Användanamn eller lösenord var inte korrekt. Vänligen försök igen.
     users:
       show:
         edit: Redigera profil
@@ -148,7 +161,7 @@ sv:
       not_an_integer: måste vara ett heltal
       odd: måste vara udda
       record_invalid: 'Ett fel uppstod: %{errors}'
-      taken: används redan
+      taken: finns redan
       too_long: är för lång (maximum är %{count} tecken)
       too_short: är för kort (minimum är %{count} tecken)
       wrong_length: har fel längd (ska vara %{count} tecken)

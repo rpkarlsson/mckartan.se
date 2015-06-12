@@ -1,4 +1,6 @@
 
+<%= render partial: 'shared/errors', locals: { object: @user} %>
+
 <div class="large-3 large-offset-2 columns">
 
   <%= form_for @user, url: users_engine.signup_url do |f| %>

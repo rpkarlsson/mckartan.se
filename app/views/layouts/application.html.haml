@@ -17,6 +17,9 @@
     = csrf_meta_tags
 
   %body
+    - if Rails.env.production?
+      =render "shared/analyticstracking"
+
     = render 'shared/menu'
     %main{ :class => params[:controller].parameterize + "-controller" }
       = yield

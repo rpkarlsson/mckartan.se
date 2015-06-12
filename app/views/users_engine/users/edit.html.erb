@@ -1,4 +1,6 @@
 
+<%= render partial: 'shared/errors', locals: { object: @user} %>
+
  <div class="large-3 large-offset-2 column">
   <%= form_for(@user || @current_user, url: profile_edit_url) do |f| %>
 

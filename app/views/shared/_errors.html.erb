@@ -1,0 +1,16 @@
+
+ <% if object and object.errors.any? %>
+  <div class="row">
+    <div data-alert class="alert-box alert">
+      <h4>
+        <%= t("errors.template.header", {count: object.errors.count, model: t(object.model_name.human)}) %>
+      </h4>
+      <ul>
+        <% object.errors.full_messages.each do |message| %>
+          <li> <%= message %> </li>
+        <% end %>
+      </ul>
+      <a href="#" class="close">&times;</a>
+    </div>
+  </div>
+ <% end %>

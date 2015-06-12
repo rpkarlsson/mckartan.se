@@ -1,4 +1,6 @@
 
+<%= render 'shared/flash' %>
+
  <div class="large-3 large-offset-2 columns">
   <%= form_for(:session, url: users_engine.login_path) do |f| %>
     <%= f.label :email %>

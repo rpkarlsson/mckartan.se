@@ -2,7 +2,7 @@ class SectionsController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:create]
   before_action :check_format
-  before_action :require_log_in, except: [:index]
+  before_action :require_log_in, except: [:index, :show]
 
 
 
@@ -29,6 +29,7 @@ class SectionsController < ApplicationController
     end
   end
 
+
   def show
     @section = Section.find(params[:id])
     @partial = render_to_string "sections/show", formats: :html, layout: false
@@ -41,7 +42,7 @@ class SectionsController < ApplicationController
   private
 
   def check_format
-    render :nothing => true, :status => 406 unless params[:format] == 'json'
+    redirect_to root_path unless params[:format] == 'json'
   end
 
 

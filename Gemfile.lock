@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rk222ev/users-rails-engine
-  revision: 3d4a2902e2ffaa002e42bc79fa0436e41069efd2
+  revision: 62affd838c02c80a0e3bea0c407b2bb8d9cade5b
   specs:
     users_engine (0.0.1)
       rails (~> 4.2.1)
