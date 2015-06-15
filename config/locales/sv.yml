@@ -9,6 +9,7 @@ sv:
 
   # Generic
   cancel: Avbryt
+  cookie_prompt: MC-kartan.se använder cookies för att fungera på ett bra sätt. Genom att surfa vidare godkänner du att vi använder cookies.
   log_in: Logga in
   log_out: Logga ut
   minutes: Minuter
