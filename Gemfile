@@ -48,6 +48,10 @@ group :development, :test do
 
 end
 
+group :production do
+  gem 'mysql2'
+end
+
 # Engine handling users
 gem 'users_engine', git: 'https://github.com/rk222ev/users-rails-engine'
 
