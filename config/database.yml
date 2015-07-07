@@ -20,6 +20,7 @@ test:
   <<: *default
   database: db/test.sqlite3
 
+# Digitalocean db
 production:
   adapter: mysql2
   database: rails
