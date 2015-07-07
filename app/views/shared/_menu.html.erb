@@ -1,32 +1,34 @@
-<nav class="top-bar" data-topbar role="navigation">
-  <ul class="title-area">
-    <li class="name">
-      <h1><%= link_to t("page_title"), main_app.root_url %></h1>
-    </li>
-     <!-- remove the class "menu-icon" to get rid of menu icon. take out "menu" to just have icon alone -->
-    <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-  </ul>
+<div class="fixed">
+  <nav class="top-bar fixed" data-topbar role="navigation">
+    <ul class="title-area">
+      <li class="name">
+        <h1><%= link_to t("page_title"), main_app.root_url %></h1>
+      </li>
+       <!-- remove the class "menu-icon" to get rid of menu icon. take out "menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+    </ul>
 
-  <% if @logged_in %>
-    <section class="top-bar-section">
-      <!-- right nav section -->
-      <ul class="right">
-        <li class="has-dropdown">
-          <a href="#"><%= @current_user.name %></a>
-          <ul class="dropdown">
-            <li><%= link_to t("profile"), users_engine.profile_path %></li>
-            <li><%= link_to t("log_out"), users_engine.logout_path, method: :delete %></li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-  <% else %>
-    <section class="top-bar-section">
-      <!-- right nav section -->
-      <ul class="right">
-        <li><%= link_to t("log_in"), users_engine.login_path %></li>
-      </ul>
-    </section>
+    <% if @logged_in %>
+      <section class="top-bar-section">
+        <!-- right nav section -->
+        <ul class="right">
+          <li class="has-dropdown">
+            <a href="#"><%= @current_user.name %></a>
+            <ul class="dropdown">
+              <li><%= link_to t("profile"), users_engine.profile_path %></li>
+              <li><%= link_to t("log_out"), users_engine.logout_path, method: :delete %></li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    <% else %>
+      <section class="top-bar-section">
+        <!-- right nav section -->
+        <ul class="right">
+          <li><%= link_to t("log_in"), users_engine.login_path %></li>
+        </ul>
+      </section>
 
-  <% end %>
-</nav>
+    <% end %>
+  </nav>
+</div>
