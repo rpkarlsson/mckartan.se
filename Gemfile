@@ -48,7 +48,7 @@ group :development, :test do
 
 end
 
-# Engine hanling users
+# Engine handling users
 gem 'users_engine', git: 'https://github.com/rk222ev/users-rails-engine'
 
 # Haml
