@@ -7,14 +7,19 @@ modulejs.define("googleMaps/geolocate", function () {
 
       navigator.geolocation.getCurrentPosition(function(position) {
         var pos = new google.maps.LatLng(position.coords.latitude,
-                                         position.coords.longitude);
+                                         position.coords.longitude),
+          marker = new google.maps.Marker({
+            position: pos,
+            map: map,
+            title: "Din position"
+          });
+
         map.setCenter(pos);
         map.setZoom(9);
         callback();
       }, function() {
         handleNoGeolocation(true);
       });
-
     }
   };
 });
