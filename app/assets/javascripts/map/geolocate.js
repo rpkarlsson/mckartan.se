@@ -11,7 +11,8 @@ modulejs.define("googleMaps/geolocate", function () {
           marker = new google.maps.Marker({
             position: pos,
             map: map,
-            title: "Din position"
+            title: "Din position",
+            icon: "signs/rider.png"
           });
 
         map.setCenter(pos);
