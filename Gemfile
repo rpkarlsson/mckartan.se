@@ -48,6 +48,7 @@ group :development, :test do
 
 end
 
+# Gems only used in production
 group :production do
   gem 'mysql2'
 end
