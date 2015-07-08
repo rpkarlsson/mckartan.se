@@ -26,8 +26,8 @@ RSpec.describe SectionsController, type: :controller do
       before do
         post :create,
               format: :json,
-              section: FactoryGirl.attributes_for(:section),
-              points: "[[32, 33], [33, 34]]"
+              section: FactoryGirl.attributes_for(:section)
+              #points: "[[32, 33], [33, 34]]"
       end
 
       it "response has http status unauthorized" do
@@ -49,7 +49,7 @@ RSpec.describe SectionsController, type: :controller do
           post :create,
                 format: :json,
                 section: FactoryGirl.attributes_for(:section),
-                points: "[[32, 33], [33, 34]]"
+                points: [[32, 33], [34, 44]]
         end
 
         it "creats a new section" do
@@ -57,7 +57,7 @@ RSpec.describe SectionsController, type: :controller do
             post :create,
                   format: :json,
                   section: FactoryGirl.attributes_for(:section),
-                  points: "[[32, 33], [33, 34]]"
+                  points: [[32, 33], [34, 44]]
           }.to change(Section, :count).by(1)
         end
 
