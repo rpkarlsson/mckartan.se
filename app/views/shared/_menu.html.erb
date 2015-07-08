@@ -4,7 +4,7 @@
       <li class="name">
         <h1><%= link_to t("page_title"), main_app.root_url %></h1>
       </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+      <li class="toggle-topbar menu-icon"><a href="#"><span><%= t "menu" %></span></a></li>
     </ul>
 
     <% if @logged_in %>
