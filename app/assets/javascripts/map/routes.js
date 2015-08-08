@@ -72,15 +72,14 @@ modulejs.define("googleMaps/routes", function () {
   function extractPoints (leg){
     var points = [];
 
-    // Loop through all steps in a leg
-    // calling them points
+    // Loop through all paths and steps in a leg
+    // and push the lng, lats to our points array.
     Array.prototype.forEach.call(leg.steps, function(step) {
-      // Loop through all paths and save long and lat to
-      // out points array
       Array.prototype.forEach.call(step.path, function(path) {
         points.push([path.lng(), path.lat()]);
       });
     });
+
     return points;
   }
 
