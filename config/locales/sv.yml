@@ -28,12 +28,17 @@ sv:
   sections:
     create:
       success: Sträckan har sparats. Tack för ditt bidrag!
+    destroy:
+      success: Sträckan har tagits bort.
+      warning: Du kan inte ta bort denna sträcka.
     show:
       created_by: Skapad av
+      confirm_delete: Är du säker på att du vill ta bort sträckan?
       start_address: Start
       end_address: Slut
       distance: Längd
       duration: Tid
+      remove: Radera
 
 
 
@@ -44,6 +49,8 @@ sv:
     users:
       show:
         edit: Redigera profil
+      create:
+        success: Välkommen till Mc-kartan.se
 
 
   # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/sv.yml

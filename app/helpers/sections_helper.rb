@@ -8,4 +8,9 @@ module SectionsHelper
   def to_minutes gmapsTime
     (gmapsTime / 60).round
   end
+
+  def user_is_creator?
+    @logged_in and @current_user.id == @section.user.id
+  end
 end
+

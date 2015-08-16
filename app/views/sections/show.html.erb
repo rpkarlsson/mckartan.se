@@ -16,6 +16,17 @@
     <td><%= "#{to_minutes @section.duration} #{t 'minutes'}" %></td>
   </tr>
   <tr>
-    <td colspan="2"><%= "#{ t '.created_by' } #{ @section.user.name }, #{ l(@section.created_at, format: :day) }" %></td>
+    <td colspan="2">
+      <%= "#{ t '.created_by' } #{ @section.user.name }, 
+                                #{ l(@section.created_at, format: :day) }" %>
+    </td>
   </tr>
+  <% if user_is_creator?  %>
+    <tr>
+      <td colspan="2">
+        <%= link_to t('.remove'), @section, method: :delete, 
+                                  data: { confirm: t('.confirm_delete')  } %>
+      </td>
+    </tr>
+  <% end %>
 </table>

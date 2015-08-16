@@ -1,8 +1,10 @@
 class SectionsController < ApplicationController
 
   skip_before_action :verify_authenticity_token, only: [:create]
-  before_action :check_format
+
+  before_action :check_format, except: [:destroy]
   before_action :require_log_in, except: [:index, :show]
+  before_action :set_section, only: [:show, :destroy]
 
 
 
@@ -31,7 +33,6 @@ class SectionsController < ApplicationController
 
 
   def show
-    @section = Section.find(params[:id])
     @partial = render_to_string "sections/show", formats: :html, layout: false
     respond_to do |format|
       format.json
@@ -39,7 +40,23 @@ class SectionsController < ApplicationController
   end
 
 
+  def destroy
+    if user_is_creator?
+      @section.destroy
+      flash[:success] = t ".success"
+      redirect_to root_path
+    else
+      flash[:warning] = t ".warning"
+      redirect_to root_path
+    end
+  end
+
   private
+
+  def set_section
+    @section = Section.find(params[:id])
+  end
+
 
   def check_format
     redirect_to root_path unless params[:format] == 'json'
@@ -55,6 +72,10 @@ class SectionsController < ApplicationController
     points.each do |point|
       @section.points.new(lng: point.first, lat: point.last )
     end
+  end
+
+  def user_is_creator?
+    @current_user.id == @section.user.id
   end
 
 end

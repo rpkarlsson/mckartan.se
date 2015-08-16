@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # Pages
   get     "about"       => "pages#about"
 
-  resources :sections, only: [:index, :show, :create]
+  resources :sections, only: [:index, :show, :create, :destroy]
 
   mount UsersEngine::Engine, at: ""
 
