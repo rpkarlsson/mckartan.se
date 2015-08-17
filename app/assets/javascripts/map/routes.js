@@ -70,17 +70,11 @@ modulejs.define("googleMaps/routes", function () {
   // Extracts all points in a leg
   // Params: The leg taken from the googlemaps API
   function extractPoints (leg){
-    var points = [];
-
-    // Loop through all paths and steps in a leg
-    // and push the lng, lats to our points array.
-    leg.steps.forEach(function (step) {
-      step.path.forEach(function (path) {
-        points.push([path.lng(), path.lat()]);
-      });
-    });
-
-    return points;
+    return leg.steps.reduce(function (collection, step) {
+        return collection.concat(step.path.map(function (path) {
+          return [path.lng(), path.lat()];
+        }));
+    }, []);
   }
 
 
