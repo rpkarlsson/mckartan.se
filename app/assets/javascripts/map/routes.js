@@ -74,8 +74,8 @@ modulejs.define("googleMaps/routes", function () {
 
     // Loop through all paths and steps in a leg
     // and push the lng, lats to our points array.
-    Array.prototype.forEach.call(leg.steps, function(step) {
-      Array.prototype.forEach.call(step.path, function(path) {
+    leg.steps.forEach(function (step) {
+      step.path.forEach(function (path) {
         points.push([path.lng(), path.lat()]);
       });
     });
