@@ -7,15 +7,15 @@
       <li class="toggle-topbar menu-icon"><a href="#"><span><%= t "menu" %></span></a></li>
     </ul>
 
-    <% if @logged_in %>
+    <% if user_signed_in?  %>
       <section class="top-bar-section">
         <!-- right nav section -->
         <ul class="right">
           <li class="has-dropdown">
-            <a href="#"><%= @current_user.name %></a>
+            <a href="#"><%= current_user.username %></a>
             <ul class="dropdown">
-              <li><%= link_to t("profile"), users_engine.profile_path %></li>
-              <li><%= link_to t("log_out"), users_engine.logout_path, method: :delete %></li>
+              <li><%= link_to t("profile"), edit_user_registration_path %></li>
+              <li><%= link_to t("log_out"), destroy_user_session_path, method: :delete %></li>
             </ul>
           </li>
         </ul>
@@ -24,8 +24,8 @@
       <section class="top-bar-section">
         <!-- right nav section -->
         <ul class="right">
-          <li><%= link_to t("log_in"), "" %></li>
-          <li><%= link_to t("sign_up"), ""%></li>
+          <li><%= link_to t("log_in"), new_user_session_path %></li>
+          <li><%= link_to t("sign_up"), new_user_registration_path %></li>
         </ul>
       </section>
 
