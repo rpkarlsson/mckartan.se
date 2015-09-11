@@ -1,6 +1,6 @@
 class Section < ActiveRecord::Base
 
-  belongs_to :user, class_name: "UsersEngine::User"
+  belongs_to :user
 
   has_many  :points
 

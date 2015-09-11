@@ -3,7 +3,6 @@ class SectionsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
 
   before_action :check_format, except: [:destroy]
-  before_action :require_log_in, except: [:index, :show]
   before_action :set_section, only: [:show, :destroy]
 
 
@@ -75,7 +74,7 @@ class SectionsController < ApplicationController
   end
 
   def user_is_creator?
-    @current_user.id == @section.user.id
+    false
   end
 
 end
