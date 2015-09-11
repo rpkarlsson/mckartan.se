@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   resources :sections, only: [:index, :show, :create, :destroy]
 
-  mount UsersEngine::Engine, at: ""
+  devise_for :users, controllers: { 
+                                  sessions: "users/sessions",
+                                  registrations: "users/registrations"}
+
+  get ':username', to: 'users#show', as: :user
 
 end

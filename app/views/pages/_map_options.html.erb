@@ -1,7 +1,7 @@
 <section id="map-options">
   <a id="geolocate-button" role="button" href="#" remote="true" class="button small info">Hitta mig</a>
   <a id="save-button" role="button" href="#" class="button small disabled hidden">Lägg till</a>
-  <% if @logged_in %>
+  <% if user_signed_in?  %>
     <a id="new-section-button" role="button" href="#" class="button small info">Ny sträcka</a>
   <% end %>
 </section>
