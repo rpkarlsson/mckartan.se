@@ -1,8 +1,9 @@
 <div class="row">
-    <div class="small-12 large-4 columns">
+    <div class="small-12 large-5 columns">
       <h2><%= t "Log_in" %></h2>
 
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "shared/flash" %>
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true %>

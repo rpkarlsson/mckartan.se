@@ -28,6 +28,9 @@ sv:
 
 
   devise:
+    failure:
+      user:
+        invalid: Felaktigt användarnamn eller lösenord
     registrations:
       user:
         destroyed: Dina uppgifter har nu tagits bort
