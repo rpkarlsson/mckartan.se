@@ -30,6 +30,7 @@ sv:
   devise:
     failure:
       user:
+        not_found_in_database: Felaktigt användarnamn eller lösenord
         invalid: Felaktigt användarnamn eller lösenord
     registrations:
       user:
