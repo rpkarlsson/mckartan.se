@@ -25,7 +25,9 @@ class SectionsController < ApplicationController
           flash[:success] = t ".success"
           render json: [section: @section, url: root_path], status: :created }
       else
-        format.json { render json: @section.errors, status: :unprocessable_entity }
+        format.json {
+              render json: @section.errors,
+              status: :unprocessable_entity }
       end
     end
   end
