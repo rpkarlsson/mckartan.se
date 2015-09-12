@@ -19,6 +19,15 @@ RSpec.describe SectionsController, type: :controller do
     it "renders correct json"
   end
 
+  describe "GET #show" do
+    before do
+      get :show, id: section.id, format: :json
+    end
+    it "assigns a section" do
+      expect(assigns(:section)).to eq(section)
+    end
+  end
+
 
   describe "POST #create" do
     context "when not logged in" do
