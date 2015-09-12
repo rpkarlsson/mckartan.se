@@ -14,8 +14,8 @@
           <li class="has-dropdown">
             <a href="#"><%= current_user.username %></a>
             <ul class="dropdown">
-              <li><%= link_to t("profile"), edit_user_registration_path %></li>
-              <li><%= link_to t("log_out"), destroy_user_session_path, method: :delete %></li>
+              <li><%= link_to t("Profile"), edit_user_registration_path %></li>
+              <li><%= link_to t("Log_out"), destroy_user_session_path, method: :delete %></li>
             </ul>
           </li>
         </ul>
@@ -24,8 +24,8 @@
       <section class="top-bar-section">
         <!-- right nav section -->
         <ul class="right">
-          <li><%= link_to t("log_in"), new_user_session_path %></li>
-          <li><%= link_to t("sign_up"), new_user_registration_path %></li>
+          <li><%= link_to t("Log_in"), new_user_session_path %></li>
+          <li><%= link_to t("Sign_up"), new_user_registration_path %></li>
         </ul>
       </section>
 

@@ -1,6 +1,6 @@
 <div class="row">
     <div class="small-12 large-4 columns">
-      <h2>Edit <%= resource_name.to_s.humanize %></h2>
+      <h2><%= t ".edit_profile" %></h2>
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= devise_error_messages! %>
@@ -20,7 +20,7 @@
         <% end %>
 
         <div class="field">
-          <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+          <%= f.label :password %> <%= t(".explain_password") %><br />
           <%= f.password_field :password, autocomplete: "off" %>
         </div>
 
@@ -30,19 +30,17 @@
         </div>
 
         <div class="field">
-          <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+        <%= f.label :current_password %> <%= t(".explain_current_password") %><br />
           <%= f.password_field :current_password, autocomplete: "off" %>
         </div>
 
         <div class="actions">
-          <%= f.submit "Update", class: "button" %>
+          <%= f.submit t("Update"), class: "button" %>
         </div>
       <% end %>
 
-      <h3>Cancel my account</h3>
+      <p><%= button_to t(".cancel_account"), registration_path(resource_name), data: { confirm: t(".confirm_removal") }, method: :delete, class: "button alert" %></p>
 
-      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "button alert" %></p>
-
-      <%= link_to "Back", :back %>
+      <%= link_to t("back"), :back %>
     </div>
 </div>

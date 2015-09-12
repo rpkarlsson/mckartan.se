@@ -1,29 +1,43 @@
 sv:
   activerecord:
     attributes:
-      users_engine/user:
-        name: Användarnamn
+      user:
+        email: E-post
         password: Lösenord
         password_confirmation: Lösenordsbekräftelse
+        username: Användarnamn
+        remember_me: Kom ihåg mig
+        current_password: Nuvarande lösenord
 
 
   # Generic
+  back: Tillbaka
   cancel: Avbryt
   cookie_prompt: MC-kartan.se använder cookies för att fungera på ett bra sätt. Genom att surfa vidare godkänner du att vi använder cookies.
-  log_in: Logga in
-  log_out: Logga ut
+  Log_in: Logga in
+  Log_out: Logga ut
   menu: meny
   minutes: Minuter
-  new_user?: "Ny användare?"
   page_title: MC-kartan.se
-  password: Lösenord
-  password_confirmation: Bekräfta lösenord
-  profile: Profil
+  Profile: Profil
   registered: Registrerad
   save: Spara
-  sign_up: Registrera
-  username: Användarnamn
-  User: användaren
+  Sign_up: Registrera
+  Forgot_password: Glömt lösenordet?
+  Update: Spara
+
+
+  devise:
+    registrations:
+      user:
+        destroyed: Dina uppgifter har nu tagits bort
+        signed_up: Välkommen till MC-kartan.se!
+        updated: "Dina uppgifter har uppdaterats."
+    sessions:
+      user:
+        signed_in: "Välkommen"
+        signed_out: "Du är nu utloggad."
+
 
   sections:
     create:
@@ -41,16 +55,16 @@ sv:
       remove: Radera
 
 
-
-  users_engine:
-    sessions:
-      create:
-        failure: Användanamn eller lösenord var inte korrekt. Vänligen försök igen.
-    users:
-      show:
-        edit: Redigera profil
-      create:
-        success: Välkommen till Mc-kartan.se
+  users:
+    registrations:
+      edit:
+        edit_profile: Uppdatera profil
+        cancel_account: Avsluta konto
+        confirm_removal: Är du säker på att du vill avsluta ditt konto?
+        explain_password: Lämna fälten tomma om du inte vill byta lösenord
+        explain_current_password: Ange ditt nuvarande lösenord för att spara dina ändringar
+      new:
+        registration: Registration
 
 
   # https://github.com/svenfuchs/rails-i18n/blob/master/rails/locale/sv.yml
@@ -168,6 +182,9 @@ sv:
       less_than_or_equal_to: måste vara mindre än eller lika med %{count}
       not_a_number: är inte ett nummer
       not_an_integer: måste vara ett heltal
+      not_saved:
+        one: "1 fel hindrade uppgifterna från att sparas:"
+        other: "%{count} fel hindrade uppgifterna från att sparas:"
       odd: måste vara udda
       record_invalid: 'Ett fel uppstod: %{errors}'
       taken: finns redan
