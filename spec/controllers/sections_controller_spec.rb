@@ -27,7 +27,6 @@ RSpec.describe SectionsController, type: :controller do
         post :create,
               format: :json,
               section: FactoryGirl.attributes_for(:section)
-              #points: "[[32, 33], [33, 34]]"
       end
 
       it "response has http status unauthorized" do
@@ -40,7 +39,7 @@ RSpec.describe SectionsController, type: :controller do
 
     context "when logged in" do
       before do
-        log_in user
+        sign_in user
       end
 
       context "posting valid params" do
