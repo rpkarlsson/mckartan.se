@@ -9,8 +9,5 @@ module SectionsHelper
     (gmapsTime / 60).round
   end
 
-  def user_is_creator?
-    user_signed_in? and current_user.id == @section.user.id
-  end
 end
 

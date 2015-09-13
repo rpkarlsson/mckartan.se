@@ -35,6 +35,7 @@ class SectionsController < ApplicationController
 
 
   def show
+    @user_is_creator = user_is_creator?
     @partial = render_to_string "sections/show", formats: :html, layout: false
     respond_to do |format|
       format.json
@@ -77,7 +78,7 @@ class SectionsController < ApplicationController
   end
 
   def user_is_creator?
-    @section.user_id == current_user.id
+    user_signed_in? and current_user.id == @section.user.id
   end
 
 end
