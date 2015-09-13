@@ -13,7 +13,7 @@ class PagesController < ApplicationController
     # if the user is new to the site.
     if cookies[:cookie].blank?
       flash.now[:info] = t("cookie_prompt")
-      cookies[:cookie] = 1
+      cookies[:cookie] = { value: 1, expires: 1.year.from_now }
     end
   end
 
