@@ -47,11 +47,10 @@ class SectionsController < ApplicationController
     if user_is_creator?
       @section.destroy
       flash[:success] = t ".success"
-      redirect_to root_path
     else
       flash[:warning] = t ".warning"
-      redirect_to root_path
     end
+    redirect_to root_path
   end
 
   private
