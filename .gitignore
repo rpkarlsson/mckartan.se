@@ -6,6 +6,7 @@
 
 # Ignore bundler config.
 /.bundle
+/vendor/bundle
 /.gem
 
 # Ignore the default SQLite database.
