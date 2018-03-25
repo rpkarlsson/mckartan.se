@@ -16,7 +16,32 @@
 
  */
 
+
+
  @import "foundation_and_overrides";
+
+$oil         : #333333;
+$button-med: rem-calc(10);
+$button-font-med: rem-calc(14);
+
+.dropdown.menu > li.is-dropdown-submenu-parent > a::after {
+    border-color: white transparent transparent;
+}
+
+.top-bar {
+  .menu-text {
+    padding: 0;
+  }
+  height: 38px;
+  a {
+    color: white !important;
+    text-decoration: none;
+  }
+}
+
+.top-bar , .top-bar ul {
+  background-color: $oil
+}
 
 html, body {
     width: 100%;

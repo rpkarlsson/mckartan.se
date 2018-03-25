@@ -1,34 +1,30 @@
-<div class="fixed">
-  <nav class="top-bar fixed" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name">
-        <h1><%= link_to t("page_title"), main_app.root_url %></h1>
-      </li>
-      <li class="toggle-topbar menu-icon"><a href="#"><span><%= t "menu" %></span></a></li>
-    </ul>
-
-    <% if user_signed_in?  %>
-      <section class="top-bar-section">
-        <!-- right nav section -->
-        <ul class="right">
-          <li class="has-dropdown">
-            <a href="#"><%= current_user.username %></a>
-            <ul class="dropdown">
-              <li><%= link_to t("Profile"), edit_user_registration_path %></li>
-              <li><%= link_to t("Log_out"), destroy_user_session_path, method: :delete %></li>
-            </ul>
-          </li>
-        </ul>
-      </section>
-    <% else %>
-      <section class="top-bar-section">
-        <!-- right nav section -->
-        <ul class="right">
-          <li><%= link_to t("Log_in"), new_user_session_path %></li>
-          <li><%= link_to t("Sign_up"), new_user_registration_path %></li>
-        </ul>
-      </section>
-
-    <% end %>
-  </nav>
+<div class="title-bar" data-responsive-toggle="responsive-menu" data-hide-for="medium">
+  <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
+  <div class="title-bar-title">Menu</div>
 </div>
+
+<nav class="top-bar" id="responsive-menu">
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="menu-text"><%= link_to t("page_title"), main_app.root_url %></li>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <% if user_signed_in? %>
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li class="has-submenu">
+        <a href="#0"><%= current_user.username %></a>
+        <ul class="submenu menu vertical" data-submenu>
+          <li><%= link_to t("Profile"), edit_user_registration_path %></li>
+          <li><%= link_to t("Log_out"), destroy_user_session_path, method: :delete %></li>
+        </ul>
+      </li>
+    </ul>
+    <% else %>
+    <ul class="menu">
+      <li><%= link_to t("Log_in"), new_user_session_path %></li>
+      <li><%= link_to t("Sign_up"), new_user_registration_path %></li>
+    </ul>
+    <% end %>
+  </div>
+</nav>
