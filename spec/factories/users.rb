@@ -1,6 +1,6 @@
 require "faker"
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do |f|
     password = Faker::Internet.password
     f.username                  { Faker::Internet.user_name }

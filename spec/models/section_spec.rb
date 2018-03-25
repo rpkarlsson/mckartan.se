@@ -1,34 +1,43 @@
 require 'rails_helper'
 
 RSpec.describe Section, type: :model do
-
+  before(:each) do
+    @section = FactoryBot.build(:section)
+    @section.points << FactoryBot.build(:point)
+  end
 
   it "has a working factory" do
-    expect(FactoryGirl.build(:section)).to be_valid
+    expect(@section).to be_valid
   end
 
   it "is invalid without a user_id" do
-    expect(FactoryGirl.build(:section, user_id: nil)).to_not be_valid
+    @section.user_id = nil
+    expect(@section).to_not be_valid
   end
 
   it "is invalid without a distance" do
-    expect(FactoryGirl.build(:section, distance: nil)).to_not be_valid
+    @section.distance = nil
+    expect(@section).to_not be_valid
   end
 
   it "is invalid without a duration" do
-    expect(FactoryGirl.build(:section, duration: nil)).to_not be_valid
+    @section.duration = nil
+    expect(@section).to_not be_valid
   end
 
   it "is invalid without a start_address" do
-    expect(FactoryGirl.build(:section, start_address: nil)).to_not be_valid
+    @section.start_address = nil
+    expect(@section).to_not be_valid
   end
 
   it "is invalid without a end_address" do
-    expect(FactoryGirl.build(:section, end_address: nil)).to_not be_valid
+    @section.end_address = nil
+    expect(@section).to_not be_valid
   end
 
   it "requires a point" do
-    expect(FactoryGirl.build(:section, points: [])).to_not be_valid
+    @section.points = []
+    expect(@section).to_not be_valid
   end
 
 end

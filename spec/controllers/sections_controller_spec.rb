@@ -3,8 +3,14 @@ require 'helpers/users_helper'
 
 RSpec.describe SectionsController, type: :controller do
 
-  let(:section) { FactoryGirl.create(:section) }
-  let(:user)    { FactoryGirl.create(:user) }
+  let(:section) {
+    s = FactoryBot.build(:section)
+    s.points << FactoryBot.build(:point)
+    s.save
+    s
+  }
+
+  let(:user)    { FactoryBot.create(:user) }
 
   describe "GET #index" do
 
@@ -21,8 +27,9 @@ RSpec.describe SectionsController, type: :controller do
 
   describe "GET #show" do
     before do
-      get :show, id: section.id, format: :json
+      get :show, params: { id: section.id }, format: :json
     end
+
     it "assigns a section" do
       expect(assigns(:section)).to eq(section)
     end
@@ -35,7 +42,7 @@ RSpec.describe SectionsController, type: :controller do
       before do
         post :create,
               format: :json,
-              section: FactoryGirl.attributes_for(:section)
+              params: { section: FactoryBot.attributes_for(:section) }
       end
 
       it "response has http status unauthorized" do
@@ -56,16 +63,17 @@ RSpec.describe SectionsController, type: :controller do
         before do
           post :create,
                 format: :json,
-                section: FactoryGirl.attributes_for(:section),
-                points: [[32, 33], [34, 44]]
+                params: {
+                  section: FactoryBot.attributes_for(:section),
+                  points: [[32, 33], [34, 44]]}
         end
 
         it "creats a new section" do
           expect{
             post :create,
                   format: :json,
-                  section: FactoryGirl.attributes_for(:section),
-                  points: [[32, 33], [34, 44]]
+                  params: {section: FactoryBot.attributes_for(:section),
+                  points: [[32, 33], [34, 44]]}
           }.to change(Section, :count).by(1)
         end
 

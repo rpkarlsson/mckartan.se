@@ -9,10 +9,10 @@
     %meta{ :name => "description", :content => "Din digitala mc-karta. Hjälp till att samla Sveriges bästa motorcykelvägar. Kartan skapad av oss motorcyklister för oss motorcyklister." }
     %meta{ :name => "keywords", :content => "Mc-karta, Mckarta, MC karta, Digital, Motorcykel, Karta, Motorcykelvägar, Vägar" }
 
+    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places"
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?libraries=places'
     = javascript_include_tag "application", "data-turbolinks-track" => false
-    = javascript_include_tag "vendor/modernizr"
+    <!-- = javascript_include_tag "vendor/modernizr" -->
 
     = csrf_meta_tags
 
