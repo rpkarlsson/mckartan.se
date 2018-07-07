@@ -132,7 +132,7 @@ GEM
     modulejs-rails (2.2.0.0)
       railties (>= 4.0)
     multi_json (1.13.1)
-    mysql2 (0.3.20)
+    mysql2 (0.5.2)
     nio4r (2.3.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
@@ -263,7 +263,7 @@ DEPENDENCIES
   listen
   modernizr-rails
   modulejs-rails
-  mysql2 (= 0.3.20)
+  mysql2 (= 0.5.2)
   rails (= 5.2.0)
   rails-controller-testing
   rspec-rails

@@ -53,7 +53,7 @@ end
 
 # Gems only used in production
 group :production do
-   gem 'mysql2','0.3.20'
+   gem 'mysql2','0.5.2'
 end
 
 gem 'devise'
