@@ -36,6 +36,7 @@ class SectionsController < ApplicationController
 
   def show
     @user_is_creator = user_is_creator?
+    @user_is_admin = user_is_admin?
     @partial = render_to_string "sections/show", formats: :html, layout: false
     respond_to do |format|
       format.json
@@ -78,6 +79,10 @@ class SectionsController < ApplicationController
 
   def user_is_creator?
     user_signed_in? and current_user.id == @section.user.id
+  end
+
+  def user_is_admin?
+    user_signed_in? and current_user.id == 1
   end
 
 end
