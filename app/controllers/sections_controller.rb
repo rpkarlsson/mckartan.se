@@ -45,7 +45,7 @@ class SectionsController < ApplicationController
 
 
   def destroy
-    if user_is_creator?
+    if user_is_creator? || user_is_admin?
       @section.destroy
       flash[:success] = t ".success"
     else
