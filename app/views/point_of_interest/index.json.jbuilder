@@ -6,6 +6,7 @@ json.features do
 
     json.properties do
       json.icon "parking"
+      json.url point_of_interest_url(poi)
     end
 
     json.geometry do

@@ -26,7 +26,7 @@ modulejs.define("googleMaps",
           maxDistance: 100000
         },
         poi: {
-          jsonUrl: "/point_of_interest.json",
+          jsonUrl: "/point_of_interest",
           url: "/point_of_interest"
         }
       };
@@ -76,9 +76,9 @@ modulejs.define("googleMaps",
       r2.http.get(event.feature.getProperty("url"), function (event) {
         var infowindow = new google.maps.InfoWindow(),
             content = JSON.parse(event.target.response).properties.html;
-            where = feature.getGeometry().getAt(0);
+            where = feature.getGeometry();
         infowindow.setContent(content);
-        infowindow.setPosition(where);
+        infowindow.setPosition(where.getAt ? where.getAt(0) : where.get());
         infowindow.open(map);
       });
     });

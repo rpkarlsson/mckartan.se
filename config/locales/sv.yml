@@ -59,6 +59,19 @@ sv:
       remove: Radera
 
 
+  point_of_interest:
+    create:
+      success: Parkeringen har sparats. Tack för ditt bidrag!
+    destroy:
+      success: Parkeringen har tagits bort.
+      warning: Du kan inte ta bort denna Parkering.
+    show:
+      created_by: Skapad av
+      confirm_delete: Är du säker på att du vill ta bort Parkeringen?
+      remove: Radera
+
+
+
   users:
     registrations:
       edit:

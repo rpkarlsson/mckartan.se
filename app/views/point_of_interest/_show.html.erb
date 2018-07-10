@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <td colspan="2">
+      <%= "#{ t '.created_by' } #{ @poi.user.username },
+                                #{ l(@poi.created_at, format: :day) }" %>
+    </td>
+  </tr>
+  <% if @user_is_creator || @user_is_admin%>
+    <tr>
+      <td colspan="2">
+        <%= link_to t('.remove'), @poi, method: :delete,
+                                  data: { confirm: t('.confirm_delete')  } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
