@@ -1,3 +1,5 @@
+require 'feature_policy'
+
 class PointOfInterestController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   respond_to :json
@@ -9,9 +11,9 @@ class PointOfInterestController < ApplicationController
 
   def show
     @poi = PointOfInterest.find(params[:id])
-    @user_is_creator = user_is_creator?
-    @user_is_admin = user_is_admin?
-    @partial = render_to_string partial: "point_of_interest/show"
+    @user_may_destroy = FeaturePolicy.destroy?(@poi, current_user)
+    @partial = render_to_string "point_of_interest/show", formats: :html, layout: false
+    render "point_of_interest/show.json"
   end
 
   def create
@@ -28,7 +30,7 @@ class PointOfInterestController < ApplicationController
 
   def destroy
     @poi = PointOfInterest.find(params[:id])
-    if user_is_creator? || user_is_admin?
+    if FeaturePolicy.destroy?(@poi, current_user)
       @poi.destroy
       flash[:success] = t ".success"
     else
@@ -42,13 +44,4 @@ class PointOfInterestController < ApplicationController
       .require(:point_of_interest)
       .permit(:lng, :lat)
   end
-
-  private def user_is_creator?
-    user_signed_in? and current_user.id == @poi.user.id
-  end
-
-  private def user_is_admin?
-    user_signed_in? and current_user.id == 1
-  end
-
 end

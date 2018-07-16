@@ -21,7 +21,7 @@
                                 #{ l(@section.created_at, format: :day) }" %>
     </td>
   </tr>
-  <% if @user_is_creator || @user_is_admin%>
+  <% if @user_may_destroy%>
     <tr>
       <td colspan="2">
         <%= link_to t('.remove'), @section, method: :delete,
