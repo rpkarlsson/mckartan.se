@@ -1,14 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Section, type: :model do
   before(:each) do
-    @section = FactoryBot.build(:section)
-    @section.points << FactoryBot.build(:point)
+   @section = build(:section_with_points)
   end
 
-  it "has a working factory" do
-    expect(@section).to be_valid
-  end
+  it { expect(@section).to be_valid }
 
   it "is invalid without a user_id" do
     @section.user_id = nil

@@ -1,18 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Point, type: :model do
-
   before(:each) do
-    @point = FactoryBot.build(:point)
-    section = FactoryBot.build(:section)
-    @point.section_id = section.id
-    section.points << @point
-    section.save
+    section = build(:section)
+    @point = build(:point)
+    @point.section = section
   end
 
-  it "has a valid factory" do
-    expect(@point).to be_valid
-  end
+  it { expect(@point).to be_valid }
 
   it "is invalid without a lng" do
     @point.lng = nil

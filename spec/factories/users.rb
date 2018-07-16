@@ -1,11 +1,11 @@
-require "faker"
+require "ffaker"
 
 FactoryBot.define do
   factory :user do |f|
-    password = Faker::Internet.password
-    f.username                  { Faker::Internet.user_name }
-    f.email                 { Faker::Internet.email }
-    f.password              { password }
+    password = FFaker::Internet.password
+    f.username { FFaker::Internet.user_name }
+    f.email    { FFaker::Internet.email }
+    f.password { password }
     f.password_confirmation { password }
   end
 
@@ -14,4 +14,3 @@ FactoryBot.define do
   end
 
 end
-

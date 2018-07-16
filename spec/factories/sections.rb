@@ -1,23 +1,21 @@
-require "faker"
+require "ffaker"
 
 FactoryBot.define do
   factory :section do |f|
-#    f.user_id       { Faker::Number.digit }
-    user
-    f.distance      { Faker::Number.number(4) }
-    f.duration      { Faker::Number.number(4) }
-    f.start_address { Faker::Address.street_address }
-    f.end_address   { Faker::Address.street_address }
-    # association :points, factory: :points, strategy: :build
+    association :user
+    f.distance      { rand }
+    f.duration      { rand }
+    f.start_address { FFaker::Address.street_address }
+    f.end_address   { FFaker::Address.street_address }
 
-    # factory :section_with_points do
-    #   transient do
-    #     point_count 5
-    #   end
+    factory :section_with_points do
+      transient do
+        point_count 5
+      end
 
-    #   after(:build) do |route, evaluator|
-    #     create_list :point, evaluator.point_count
-    #   end
-    # end
+      after(:build) do |section, evaluator|
+        section.points = build_list(:point, evaluator.point_count, section: section)
+      end
+    end
   end
 end
