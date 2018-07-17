@@ -43,7 +43,33 @@ RSpec.describe SectionsController, type: :controller do
 
       it { expect(response).to have_http_status(:created) }
       it { expect(assigns(:section)).to eq(Section.first) }
-
     end
+  end
+
+  describe "DELETE #destroy" do
+    it "rejects non users" do
+      delete :destroy,
+           format: :json,
+           params: { id: 1 }
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    context "when logged in" do
+      def destroy_section(id)
+        delete :destroy,
+              format: :json,
+              params: { id: 1 }
+      end
+
+      before do
+        sign_in create :user
+        s = create :section_with_points
+        destroy_section s.id
+      end
+
+      it { expect(response).to have_http_status(:found) }
+      it { expect(response).to redirect_to(root_path) }
+    end
+
   end
 end

@@ -42,4 +42,31 @@ RSpec.describe PointOfInterestController, type: :controller do
       it { expect(assigns(:poi)).to eq(PointOfInterest.first) }
     end
   end
+
+  describe "DELETE #destroy" do
+    it "rejects non users" do
+      delete :destroy,
+           format: :json,
+           params: { id: 1 }
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    context "when logged in" do
+      def destroy_poi(id)
+        delete :destroy,
+              format: :json,
+              params: { id: 1 }
+      end
+
+      before do
+        sign_in create :user
+        p = create :point_of_interest
+        destroy_poi p.id
+      end
+
+      it { expect(response).to have_http_status(:found) }
+      it { expect(response).to redirect_to(root_path) }
+    end
+
+  end
 end
